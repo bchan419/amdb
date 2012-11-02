@@ -9,20 +9,40 @@
 Director.destroy_all
 Movie.destroy_all
 
-d = Director.new
-d.name = "Ron Howard"
-d.save
+directors = [
+  { :name => "Christopher Nolan", :dob => "07/30/1970" },
+  { :name => "Francis Ford Coppola", :dob => "04/07/1939" },
+  { :name => "Frank Darabont", :dob => "01/29/1959" },
+  { :name => "Ron Howard", :dob => "03/01/1954" },
+  { :name => "George Lucas", :dob => "05/14/1944" },
+  { :name => "Steven Spielberg", :dob => "12/18/1946" }
+]
 
-m = Movie.new
-m.title = "Apollo 13"
-m.director_id = d.id
-m.save
+movies = [
+  { :title => "Star Wars: A New Hope", :year => 1977, :director => "George Lucas" },
+  { :title => "E.T.", :year => 1977, :director => "Steven Spielberg" },
+  { :title => "Raiders of the Lost Ark", :year => 1977, :director => "Steven Spielberg" },
+  { :title => "Apollo 13", :year => 1977, :director => "Ron Howard" },
+  { :title => "Minority Report", :year => 1977, :director => "Steven Spielberg" },
+  { :title => "The Dark Knight", :year => 2008, :director => "Christopher Nolan" },
+  { :title => "The Godfather", :year => 1972, :director => "Francis Ford Coppola" },
+  { :title => "The Godfather: Part II", :year => 1974, :director => "Francis Ford Coppola" },
+  { :title => "The Shawshank Redemption", :year => 1994, :director => "Frank Darabont" },
+]
 
-d = Director.create(:name => "George Lucas")
-Movie.create(:title => "Star Wars", :director_id => d.id)
+roles = [
+  { :name => "Bruce Wayne", :movie => "The Dark Knight" }
+  { :name => "Michael Corleone", :movie => "The Godfather" }
+  { :name => "Andy Dufresne", :movie => "The Shawshank Redemption" }
+  { :name => "Red Redding", :movie => "The Shawshank Redemption" }
+]
 
-d = Director.create(:name => "Steven Spielberg")
-Movie.create(:title => "E.T.", :director_id => d.id)
-Movie.create(:title => "Raiders of the Lost Ark", :director_id => d.id)
-Movie.create(:title => "Minority Report", :director_id => d.id)
+Director.create directors
+
+movies.each do |movie|
+  d = Director.find_by_name(movie[:director])
+  d.movies.create :title => movie[:title], :year => movie[:year]
+end
+
+
 
