@@ -8,6 +8,7 @@
 
 Director.destroy_all
 Movie.destroy_all
+Role.destroy_all
 
 directors = [
   { :name => "Christopher Nolan", :dob => "07/30/1970" },
@@ -31,9 +32,9 @@ movies = [
 ]
 
 roles = [
-  { :name => "Bruce Wayne", :movie => "The Dark Knight" }
-  { :name => "Michael Corleone", :movie => "The Godfather" }
-  { :name => "Andy Dufresne", :movie => "The Shawshank Redemption" }
+  { :name => "Bruce Wayne", :movie => "The Dark Knight" },
+  { :name => "Michael Corleone", :movie => "The Godfather" },
+  { :name => "Andy Dufresne", :movie => "The Shawshank Redemption" },
   { :name => "Red Redding", :movie => "The Shawshank Redemption" }
 ]
 
@@ -41,7 +42,12 @@ Director.create directors
 
 movies.each do |movie|
   d = Director.find_by_name(movie[:director])
-  d.movies.create :title => movie[:title], :year => movie[:year]
+  Movie.create :title => movie[:title], :year => movie[:year], :director_id => d.id
+end
+
+roles.each do |role|
+  m = Movie.find_by_title(role[:movie])
+  Role.create :name => role[:name], :movie_id => m.id
 end
 
 
