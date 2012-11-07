@@ -3,6 +3,8 @@ class Director < ActiveRecord::Base
   
   has_many :movies
   
+  validates_presence_of :name
+  
   # def movies
   #   Movie.where(:director_id => self.id)
   # end
