@@ -47,6 +47,7 @@ class VotesController < ApplicationController
         format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
         format.json { render json: @vote, status: :created, location: @vote }
       else
+        flash[:notice] = 'Nice try, suckah!'
         format.html { render action: "new" }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
