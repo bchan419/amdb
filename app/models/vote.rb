@@ -8,10 +8,6 @@ class Vote < ActiveRecord::Base
   
   validate :user_cannot_have_more_than_three_votes
   validate :user_cannot_vote_for_the_same_movie_more_than_once
-  
-  def user
-    
-  end
 
   def user_cannot_have_more_than_three_votes
     if self.user.votes.count >= 3
