@@ -6,10 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.destroy_all
 Director.destroy_all
 Actor.destroy_all
 Movie.destroy_all
 Role.destroy_all
+
+User.create :name => "Jeff", :email => "jeff@starterleague.com", :password => "hockey", :password_confirmation => "hockey"
 
 directors = [
   { :name => "Christopher Nolan", :dob => Date.parse("30/07/1970") },
