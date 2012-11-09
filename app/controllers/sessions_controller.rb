@@ -3,12 +3,31 @@ class SessionsController < ApplicationController
   end
   
   def introduce
-    # Your code goes here; identify and remember the user.
-    
-    redirect_to root_url
+    user = User.find_by_email(params[:email])
+
+    if user != nil
+      session[:user_id] = user.id
+      redirect_to root_url, :notice => "Welcome back, #{user.name}!"
+    else
+      redirect_to login_url, :notice => "Sorry, try again."
+    end
   end
 
   def bye
-    # Your code goes here; forget the user.
+    session[:user_id] = nil
+    redirect_to root_url
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

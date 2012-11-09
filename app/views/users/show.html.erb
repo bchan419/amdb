@@ -8,6 +8,15 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <b>Upvoted:</b>
+  <ul>
+  <%# @user.movies.each do |movie| %>
+    <li><%#= movie.title %></li>
+  <%# end %>
+  </ul>
+</p>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

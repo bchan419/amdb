@@ -1,5 +1,5 @@
 Amdb::Application.routes.draw do
-  get 'sessions/hi' => 'Sessions#hi'
+  get 'sessions/hi' => 'Sessions#hi', :as => 'login'
   post 'sessions/introduce' => 'Sessions#introduce'
   get 'sessions/bye'
 
