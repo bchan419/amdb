@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def introduce
     user = User.find_by_email(params[:email])
     
-    if user != nil
+    if user != nil && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to root_url, :notice => "Welcome back, #{user.name}!"
     else
